@@ -4,6 +4,7 @@ import flynn.springframework.springframeworkdi.controllers.ConstructorInjectedCo
 import flynn.springframework.springframeworkdi.controllers.MyController;
 import flynn.springframework.springframeworkdi.controllers.PropertyInjectedController;
 import flynn.springframework.springframeworkdi.controllers.SetterInjectedController;
+import flynn.springframework.springframeworkdi.exampleBeans.FakeDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +17,10 @@ public class SpringframeworkDiApplication {
         ApplicationContext ctx = SpringApplication.run(SpringframeworkDiApplication.class, args);
 
         MyController myController = (MyController) ctx.getBean("myController");
+
+        /*Adding property file*/
+        FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
+        System.out.println(fakeDataSource.getUser());
 
         System.out.println("--------- Primary Bean");
         System.out.println(myController.sayHello());
